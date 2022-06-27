@@ -1,4 +1,5 @@
 import express, { urlencoded } from "express";
+// import 
 import cors from "cors";
 import mongoose from "mongoose";
 
@@ -37,11 +38,11 @@ const User = new mongoose.model("User", userSchema)
 //Routes
 
 app.post("/login", (req, res)=> {
-    const { email, password, position} = req.body
+    const { email, password, position, name} = req.body
     User.findOne({ email: email}, (err, user) => {
         if(user){
             if(password === user.password && position==user.position ) {
-                res.send({message: "Login Successfull", user: user})
+                res.send({message: "Login Successfull!! "+ user.name + " "+ user.position, user: user})
             }else if(position !== user.position)
             {
                 res.send({ message: "Position didn't match"})
@@ -77,7 +78,7 @@ app.post("/register",(req,res)=> {
                 if(err){
                     res.send(err)
                 }else{
-                   res.send({message: "Succesful Registered, Please Log in Now!!" }) 
+                   res.send({message: "Registration Successful"+user.name }) 
                 }
             })
         }

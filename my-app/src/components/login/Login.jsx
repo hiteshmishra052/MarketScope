@@ -13,7 +13,8 @@ const Login= ({setLoginUser}) =>{
     
         email:  "",
         password: "",
-        position: ""
+        position: "",
+        name: ""
     })
 
 
